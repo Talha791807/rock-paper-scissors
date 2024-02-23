@@ -27,6 +27,7 @@ function announceWinner(winner) {
         window.alert(`You ${winner === "Player" ? "Win" : "Lose"} the game!`);
     }, 100);
 }
+
 function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -41,32 +42,29 @@ function resetGame() {
     const winnerDiv = document.getElementById('winner');
     winnerDiv.innerHTML = '';
 }
+
 document.getElementById('rock').addEventListener('click', function() {
-    const playerSelection = 'rock';
-    playRound(playerSelection, getComputerChoice());
+    playRound('rock', getComputerChoice());
 });
 
 document.getElementById('paper').addEventListener('click', function() {
-    const playerSelection = 'paper';
-    playRound(playerSelection, getComputerChoice());
+    playRound('paper', getComputerChoice());
 });
 
 document.getElementById('scissors').addEventListener('click', function() {
-    const playerSelection = 'scissors';
-    playRound(playerSelection, getComputerChoice());
+    playRound('scissors', getComputerChoice());
 });
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
     const winningScenario = {
         rock: 'scissors',
         paper: 'rock',
         scissors: 'paper'
     };
 
-    if (playerSelection === computerSelection.toLowerCase()) {
+    if (playerSelection === computerSelection) {
         displayResult("It's a Tie");
-    } else if (winningScenario[computerSelection.toLowerCase()] === playerSelection) {
+    } else if (winningScenario[playerSelection] === computerSelection) {
         playerScore++;
         displayResult(`You Win! ${playerSelection} beats ${computerSelection}`);
     } else {
